@@ -10,15 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Log4j
 public class Main {
 
-    /*@Bean
-    @Autowired
-    public JobLauncher jobLauncher(ApplicationContext context) throws Exception {
-        SimpleJobLauncher launcher = new SimpleJobLauncher();
-        launcher.setJobRepository(context.getBean(JobRepository.class));
-        launcher.setTaskExecutor(new SimpleAsyncTaskExecutor());
-        return launcher;
-    }*/
-
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Main.class, args);
     }
