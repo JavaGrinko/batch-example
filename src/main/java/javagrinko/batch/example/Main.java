@@ -1,5 +1,6 @@
 package javagrinko.batch.example;
 
+import javagrinko.batch.example.service.ImportService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -27,6 +28,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Main.class, args);
+        ApplicationContext context = SpringApplication.run(Main.class, args);
+        context.getBean(ImportService.class).start();
     }
 }

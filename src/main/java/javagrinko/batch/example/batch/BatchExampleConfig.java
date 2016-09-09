@@ -56,6 +56,7 @@ public class BatchExampleConfig {
 
     @Bean
     public JdbcBatchItemWriter<Product> writer() {
+        System.out.println("writer()");
         JdbcBatchItemWriter<Product> writer = new JdbcBatchItemWriter<>();
         writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>());
         writer.setSql("INSERT INTO products " +
@@ -78,9 +79,7 @@ public class BatchExampleConfig {
     @Bean
     public Job importUserJob() {
         return jobBuilderFactory.get("importProductsJob")
-                .incrementer(new RunIdIncrementer())
-                .flow(step1())
-                .end()
+                .start(step1())
                 .build();
     }
 
