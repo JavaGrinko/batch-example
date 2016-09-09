@@ -6,7 +6,6 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
@@ -78,9 +77,7 @@ public class BatchExampleConfig {
     @Bean
     public Job importUserJob() {
         return jobBuilderFactory.get("importProductsJob")
-                .incrementer(new RunIdIncrementer())
-                .flow(step1())
-                .end()
+                .start(step1())
                 .build();
     }
 
