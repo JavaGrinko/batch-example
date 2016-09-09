@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableBatchProcessing
 @Log4j
 public class Main {
-
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Main.class, args);
     }
