@@ -1,6 +1,6 @@
 package javagrinko.batch.example;
 
-import javagrinko.batch.example.service.ImportServiceImpl;
+import javagrinko.batch.example.service.JobService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.batch.core.configuration.JobRegistry;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -23,13 +23,13 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 public class Main {
 
     @Bean
-    public JobRegistry jobRegistry() {
-        return new MapJobRegistry();
+    public ConversionServiceFactoryBean conversionService() {
+        return new ConversionServiceFactoryBean();
     }
 
     @Bean
-    public ConversionServiceFactoryBean conversionService() {
-        return new ConversionServiceFactoryBean();
+    public JobRegistry jobRegistry() {
+        return new MapJobRegistry();
     }
 
     @Bean
@@ -50,7 +50,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         ApplicationContext context = SpringApplication.run(Main.class, args);
-        ImportServiceImpl bean = context.getBean(ImportServiceImpl.class);
-        bean.start();
+        JobService bean = context.getBean(JobService.class);
+        bean.start("importProductsJob");
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Log4j
-public class ImportServiceImpl implements ImportService {
+public class JobServiceImpl implements JobService {
 
     @Autowired
     private JobLauncher jobLauncher;
@@ -19,9 +19,9 @@ public class ImportServiceImpl implements ImportService {
     private JobRegistry jobRegistry;
 
     @Override
-    public void start() {
+    public void start(String jobName) {
         try {
-            Job job = jobRegistry.getJob("importProductsJob");
+            Job job = jobRegistry.getJob(jobName);
             jobLauncher.run(job, new JobParameters());
         } catch (Exception e) {
             e.printStackTrace();
